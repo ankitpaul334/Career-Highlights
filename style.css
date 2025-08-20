@@ -1,0 +1,189 @@
+/* ---------- Base ---------- */
+:root{
+  --bg:#0a0a0a;
+  --card:#111;
+  --text:#eaeaea;
+  --muted:#b9b9b9;
+  --line:#1b1b1b;
+  --green:#00ff6a;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+
+/* ---------- Continuous flowing gradient for whole page ---------- */
+  body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 800px at 50% 50%, rgba(0,255,106,.2), transparent 70%),
+              linear-gradient(to bottom, #050505 0%, #0a0a0a 100%);
+  z-index: -1;
+  pointer-events: none;
+  animation: flow 12s ease-in-out infinite alternate;
+  } 
+
+body{
+  margin:0;
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior:smooth;
+}
+
+/* ---------- Navbar ---------- */
+.navbar{
+  position:fixed; inset:0 0 auto 0; height:64px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 24px;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.9), rgba(10,10,10,0.5));
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid var(--line);
+  z-index:1000;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 18px rgba(0,255,106,.6);}
+.brand-text{font-weight:700;letter-spacing:.2px}
+.nav-links{display:flex;gap:18px;align-items:center}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:14.5px;padding:8px 6px;
+  border-bottom:2px solid transparent;transition:.25s ease;}
+.nav-links a:hover,.nav-links a.active{color:var(--green);border-bottom-color:var(--green);}
+
+/* ---------- Sections base ---------- */
+section{
+  position:relative;
+  width:100%;
+  padding:96px 22px;
+}
+.section-inner{
+  max-width:1120px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+.section:first-of-type{padding-top:120px}
+.section-title{font-size:28px;margin:0 0 18px;color:var(--green);letter-spacing:.3px}
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:88vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:120px 22px 48px;
+  background:
+    radial-gradient(900px 500px at 70% -10%, rgba(0,255,106,.08), transparent 70%),
+    radial-gradient(600px 400px at 0% 10%, rgba(0,255,106,.06), transparent 70%),
+    linear-gradient(to bottom,#0a0a0a 0%, #050505 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{max-width:900px;text-align:center;margin:0 auto}
+.hero h1{font-size:42px;margin:0 0 10px}
+.hero h1 span{color:var(--green)}
+.tagline{color:var(--muted);font-size:18px}
+.chips{margin:20px auto 26px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.chips span{padding:8px 14px;border-radius:999px;border:1px solid var(--green);
+  color:var(--green);background:rgba(0,255,106,.08);font-size:13px;}
+.contact-quick{display:flex;gap:10px;justify-content:center;color:var(--muted)}
+.contact-quick a{color:var(--green);text-decoration:none}
+.contact-quick a:hover{text-decoration:underline}
+
+/* Animate background position for movement */
+@keyframes flow {
+  0%   { background-position: 30% 20%, 0 0; }
+  50%  { background-position: 70% 80%, 0 200px; }
+  100% { background-position: 50% 50%, 0 0; }
+}
+
+/* ---------- Section backgrounds now semi-transparent layers ---------- */
+#skills, #projects, #publications, #leadership, #contact {
+  background: rgba(0,0,0,0.65); /* subtle dark overlay to keep readability */
+  backdrop-filter: blur(6px);  /* makes it more “fused” with flow */
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Glow effect layer */
+#glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    300px circle at 0 0,
+    rgba(0, 255, 106, 0.15),
+    transparent 80%
+  );
+  z-index: -1; /* keep it behind content but above base background */
+  transition: background-position 0.08s linear;
+}
+
+/* ---------- Skills (Tech Stack) ---------- */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.skills-grid span {
+  background: rgba(0, 255, 106, 0.08); /* subtle green tint */
+  border: 1px solid var(--green);      /* bright green outline */
+  color: var(--green);                 /* text in green */
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.skills-grid span:hover {
+  background: rgba(0, 255, 106, 0.2);  /* slightly brighter on hover */
+  transform: translateY(-2px);         /* subtle lift effect */
+}
+
+
+/* ---------- Projects ---------- */
+.project-grid{display:flex;flex-wrap:wrap;gap:22px}
+.project-card{flex:1 1 280px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;padding:18px;
+  transition:transform .25s ease,border-color .25s ease;}
+.project-card:hover{transform:translateY(-6px);border-color:rgba(0,255,106,.4);}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card-top h3{margin:0;font-size:18px}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);
+  font-size:12px;color:var(--muted)}
+.card-link{display:inline-block;margin-top:10px;color:var(--green);text-decoration:none;font-weight:600}
+.card-link:hover{text-decoration:underline}
+
+/* ---------- Research ---------- */
+.publication{background:rgba(255,255,255,.04);border-left:4px solid var(--green);
+  border:1px solid var(--line);padding:16px 18px;border-radius:10px;margin:14px 0;}
+.publication h3{margin:0 0 6px}
+.meta{color:var(--muted);margin:0 0 8px;font-size:14px}
+.desc{color:#cfcfcf;margin:0}
+
+/* ---------- Leadership ---------- */
+.contrib{background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:18px;margin:14px 0;}
+.contrib h3{margin:0 0 8px}
+.bullets{margin:10px 0 8px 18px}
+.bullets li{margin:6px 0;color:#d7d7d7}
+
+/* ---------- Contact ---------- */
+.contact-grid{
+  display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;
+}
+.label{color:var(--muted);font-size:12px;margin-bottom:4px}
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- Footer ---------- */
+.footer{border-top:1px solid var(--line);text-align:center;padding:24px;color:var(--muted)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:760px){
+  .nav-links{gap:12px}
+  .profile-badge{display:none}
+  .hero h1{font-size:34px}
+}
+

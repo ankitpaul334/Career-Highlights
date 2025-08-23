@@ -66,26 +66,52 @@ section{
 .section-title{font-size:28px;margin:0 0 18px;color:var(--green);letter-spacing:.3px}
 
 /* ---------- Hero ---------- */
-.hero{
-  min-height:88vh;
-  display:flex;align-items:center;justify-content:center;
-  padding:120px 22px 48px;
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 22px 48px;
   background:
     radial-gradient(900px 500px at 70% -10%, rgba(0,255,106,.08), transparent 70%),
     radial-gradient(600px 400px at 0% 10%, rgba(0,255,106,.06), transparent 70%),
-    linear-gradient(to bottom,#0a0a0a 0%, #050505 100%);
-  border-bottom:1px solid var(--line);
+    linear-gradient(to bottom,#0a0a0a 0%,
+      #0a0a0a 40%,
+      #080808 70%,
+      #050505 100% 100%);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden; /* ensures pseudo-elements don’t leak */
 }
-.hero-inner{max-width:900px;text-align:center;margin:0 auto}
-.hero h1{font-size:42px;margin:0 0 10px}
-.hero h1 span{color:var(--green)}
-.tagline{color:var(--muted);font-size:18px}
-.chips{margin:20px auto 26px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.chips span{padding:8px 14px;border-radius:999px;border:1px solid var(--green);
-  color:var(--green);background:rgba(0,255,106,.08);font-size:13px;}
-.contact-quick{display:flex;gap:10px;justify-content:center;color:var(--muted)}
-.contact-quick a{color:var(--green);text-decoration:none}
-.contact-quick a:hover{text-decoration:underline}
+
+.hero::before {
+  /* keep your glow background (already there) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::after {
+  /* add the dpbg.png only on the right */
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%; /* adjust size */
+  background: url("dpbg.png") no-repeat right center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1; /* keep text above both */
+}
+
 
 /* Animate background position for movement */
 @keyframes flow {
@@ -186,4 +212,3 @@ a:hover{text-decoration:underline}
   .profile-badge{display:none}
   .hero h1{font-size:34px}
 }
-

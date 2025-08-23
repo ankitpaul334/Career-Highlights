@@ -94,13 +94,12 @@ section{
 }
 
 .hero::after {
-  /* add the dpbg.png only on the right */
   content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 40%; /* adjust size */
+  width: 40%; 
   background: url("dpbg.png") no-repeat right center;
   background-size: contain;
   pointer-events: none;
@@ -111,7 +110,15 @@ section{
   position: relative;
   z-index: 1; /* keep text above both */
 }
-
+.hero-inner{max-width:900px;text-align:center;margin:0 auto} 
+.hero h1{font-size:42px;margin:0 0 10px} 
+.hero h1 span{color:var(--green)} 
+.tagline{color:var(--muted);font-size:18px} 
+.chips{margin:20px auto 26px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center} 
+.chips span{padding:8px 14px;border-radius:999px;border:1px solid var(--green); color:var(--green);background:rgba(0,255,106,.08);font-size:13px;} 
+.contact-quick{display:flex;gap:10px;justify-content:center;color:var(--muted)} 
+.contact-quick a{color:var(--green);text-decoration:none} 
+.contact-quick a:hover{text-decoration:underline}
 
 /* Animate background position for movement */
 @keyframes flow {
@@ -169,7 +176,7 @@ section{
 
 /* ---------- Projects ---------- */
 .project-grid{display:flex;flex-wrap:wrap;gap:22px}
-.project-card{flex:1 1 280px;background:var(--card);
+.project-card{flex:1 1 280px;background:rgba(255,255,255,.04);
   border:1px solid var(--line);border-radius:14px;padding:18px;
   transition:transform .25s ease,border-color .25s ease;}
 .project-card:hover{transform:translateY(-6px);border-color:rgba(0,255,106,.4);}
@@ -188,7 +195,7 @@ section{
 .desc{color:#cfcfcf;margin:0}
 
 /* ---------- Leadership ---------- */
-.contrib{background:var(--card);border:1px solid var(--line);
+.contrib{background:rgba(255,255,255,.04);border:1px solid var(--line);
   border-radius:14px;padding:18px;margin:14px 0;}
 .contrib h3{margin:0 0 8px}
 .bullets{margin:10px 0 8px 18px}
@@ -197,7 +204,7 @@ section{
 /* ---------- Contact ---------- */
 .contact-grid{
   display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:18px;
 }
 .label{color:var(--muted);font-size:12px;margin-bottom:4px}
 a{color:var(--green);text-decoration:none}
